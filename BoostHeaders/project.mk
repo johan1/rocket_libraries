@@ -1,0 +1,10 @@
+# Required
+NAME := BoostSystem
+TYPE := static
+HEADER_ONLY_LIB := 1
+
+# Deploy
+EXPORT_AUTO_INCLUDES := 1
+EXPORT_INCLUDE_FOLDER_NAME := boost
+EXPORT_LIBNAME := BoostHeaders
+EXPORT_LIBVERSION := 1.55

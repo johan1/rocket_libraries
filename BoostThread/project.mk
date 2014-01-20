@@ -1,0 +1,17 @@
+# Required
+NAME := BoostThread
+TYPE := static
+
+DEFINES += -DBOOST_THREAD_POSIX
+DEFINES += -DBOOST_SYSTEM_NO_DEPRECATED
+DEFINES += -DBOOST_THREAD_THROW_IF_PRECONDITION_NOT_SATISFIED
+
+SOURCES := \
+pthread/thread.cpp \
+pthread/once.cpp \
+future.cpp
+
+# Deploy
+EXPORT_INCLUDE_FOLDER_NAME := boost
+EXPORT_LIBNAME := BoostThread
+EXPORT_LIBVERSION := 1.55
