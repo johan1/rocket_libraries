@@ -1,0 +1,5 @@
+vorbis
+src/include/vorbis
+codec.h
+vorbisenc.h
+vorbisfile.h
