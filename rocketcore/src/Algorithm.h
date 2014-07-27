@@ -7,6 +7,44 @@
 
 namespace rocket {
 
+// Functors
+
+// Predicate functor that checks if pointer is managed by pointer wrapper.
+template <typename T>
+struct managed_by_sp_impl {
+	managed_by_sp_impl(T const* ptr) : ptr(ptr) {}
+
+	template <typename SP>
+	bool operator()(SP const& sp) const {
+		return sp.get() == ptr;
+	}
+
+	T const* ptr;
+};
+
+template <typename T>
+managed_by_sp_impl<T> managed_by_sp(T const* ptr) {
+	return managed_by_sp_impl<T>(ptr);
+}
+
+// Predicate functor that checks if container contains element
+template <typename Container>
+struct contains_element_impl {
+	contains_element_impl(Container const& container) : container(container) {}
+
+	template <typename T>
+	bool operator()(T const& t) const {
+		return std::find(container.begin(), container.end(), t) != container.end();
+	}
+
+	Container const& container;
+};
+
+template <typename Container>
+contains_element_impl<Container> contains_element(Container const& container) {
+	return contains_element_impl<Container>(container);
+}
+
 // Vector utilities
 template <typename Vector, typename Value>
 void erase(Vector &vec, Value const& value) {
