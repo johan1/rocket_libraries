@@ -1,6 +1,6 @@
 # Required
-NAME := BoostSystem
-TYPE := static
+NAME := BoostHeaders
+TYPE := header
 HEADER_ONLY_LIB := 1
 
 # Deploy

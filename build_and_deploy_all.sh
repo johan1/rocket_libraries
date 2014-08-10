@@ -13,6 +13,8 @@ LIBRARIES="$LIBRARIES libogg"
 LIBRARIES="$LIBRARIES libpng15"
 LIBRARIES="$LIBRARIES libvorbis"
 LIBRARIES="$LIBRARIES freetype"
+LIBRARIES="$LIBRARIES jsoncpp"
+LIBRARIES="$LIBRARIES rocketcore"
 
 for LIBRARY in $LIBRARIES; do
 	echo Building and deploying $LIBRARY...

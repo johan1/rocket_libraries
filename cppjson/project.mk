@@ -1,7 +1,6 @@
 # Required
 NAME := cppjson
-TYPE := static
-HEADER_ONLY_LIB := 1
+TYPE := header 
 
 # Deploy
 EXPORT_AUTO_INCLUDES := 1
