@@ -12,6 +12,7 @@ pthread/once.cpp \
 future.cpp
 
 # Deploy
+EXPORT_SYSTEM_LIB := 1
 EXPORT_INCLUDE_FOLDER_NAME := boost
 EXPORT_LIBNAME := BoostThread
 EXPORT_LIBVERSION := 1.55
