@@ -176,6 +176,11 @@ managed_by_sp_impl<T> managed_by_sp(T const* ptr) {
 	return managed_by_sp_impl<T>(ptr);
 }
 
+template <typename Container, typename Value>
+bool contains_element(Container const& container, Value const& value) {
+	return std::find(container.begin(), container.end(), value) != container.end();
+}
+
 // Predicate functor that checks if container contains element
 template <typename Container>
 struct contains_element_impl {
