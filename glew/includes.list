@@ -1,0 +1,6 @@
+
+glew-2.0.0/include
+GL/eglew.h
+GL/glew.h
+GL/glxew.h
+GL/wglew.h

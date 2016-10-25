@@ -15,9 +15,15 @@ LIBRARIES="$LIBRARIES libvorbis"
 LIBRARIES="$LIBRARIES freetype"
 LIBRARIES="$LIBRARIES jsoncpp"
 LIBRARIES="$LIBRARIES rocketcore"
+LIBRARIES="$LIBRARIES glew"
 
 for LIBRARY in $LIBRARIES; do
 	echo Building and deploying $LIBRARY...
-	cd $LIBRARY && rocket_build clean deploy && cd -
+	cd $LIBRARY;
+	if [ -f "project.mk" ]; then
+		rocket_prepare
+	fi
+	make clean deploy;
+	cd -
 done
 
