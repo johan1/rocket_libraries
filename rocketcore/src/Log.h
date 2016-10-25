@@ -7,15 +7,14 @@
 
 #include <string>
 #include <boost/chrono.hpp>
-#include <boost/format.hpp>
 
 #include <sstream>
 
 namespace rocket {
 	enum class LogLevel {
-		DEBUG,
-		WARNING,
-		ERROR
+		DEBUG_LOG_LEVEL,
+		WARNING_LOG_LEVEL,
+		ERROR_LOG_LEVEL
 	};
 
 	class Logger {
@@ -57,27 +56,27 @@ namespace rocket {
 	}
 
 	inline void logd(std::string const& tag, std::string const& message) {
-		Logger::getLogger().log(LogLevel::DEBUG, tag, message);
+		Logger::getLogger().log(LogLevel::DEBUG_LOG_LEVEL, tag, message);
 	}
 
 	inline void logw(std::string const& tag, std::string const& message) {
-		Logger::getLogger().log(LogLevel::WARNING, tag, message);
+		Logger::getLogger().log(LogLevel::WARNING_LOG_LEVEL, tag, message);
 	}
 
 	inline void loge(std::string const& tag, std::string const& message) {
-		Logger::getLogger().log(LogLevel::ERROR, tag, message);
+		Logger::getLogger().log(LogLevel::ERROR_LOG_LEVEL, tag, message);
 	}
 
 	inline void logd(std::string const& message) {
-		Logger::getLogger().log(LogLevel::DEBUG, message);
+		Logger::getLogger().log(LogLevel::DEBUG_LOG_LEVEL, message);
 	}
 
 	inline void logw(std::string const& message) {
-		Logger::getLogger().log(LogLevel::WARNING, message);
+		Logger::getLogger().log(LogLevel::WARNING_LOG_LEVEL, message);
 	}
 
 	inline void loge(std::string const& message) {
-		Logger::getLogger().log(LogLevel::ERROR, message);
+		Logger::getLogger().log(LogLevel::ERROR_LOG_LEVEL, message);
 	}
 }
 

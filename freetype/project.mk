@@ -4,11 +4,18 @@ TYPE := static
 
 SOURCE_DIR := $(PROJECT_ROOT)/src
 INCLUDES += -I$(PROJECT_ROOT)/src/include
+
+ifeq ($(TARGET),i686-w64-mingw32)
+INCLUDES += -I$(PROJECT_ROOT)/src/builds/windows
+DEFINES += "-DFT_CONFIG_CONFIG_H=<config/ftconfig.h>"
+else
 INCLUDES += -I$(PROJECT_ROOT)/src/builds/unix
+DEFINES += "-DFT_CONFIG_CONFIG_H=<ftconfig.h>"
+endif
 INCLUDES += -I$(PROJECT_ROOT)/src/objs
 
 DEFINES += -DFT_CONFIG_OPTION_USE_PNG
-DEFINES += "-DFT_CONFIG_CONFIG_H=<ftconfig.h>"
+
 DEFINES += -DFT2_BUILD_LIBRARY
 DEFINES += "-DFT_CONFIG_MODULES_H=<ftmodule.h>"
 
@@ -19,7 +26,6 @@ EXPORT_LIBNAME := freetype
 EXPORT_LIBVERSION := 2.5.2
 
 CSOURCES := \
-	builds/unix/ftsystem.c \
 	src/base/ftdebug.c \
 	src/base/ftinit.c \
 	src/base/ftbase.c \
@@ -61,4 +67,11 @@ CSOURCES := \
 	src/bzip2/ftbzip2.c \
 	src/psaux/psaux.c \
 	src/psnames/psmodule.c
-	
+
+ifeq ($(TARGET),i686-w64-mingw32)
+CSOURCES += builds/windows/ftdebug.c
+CSOURCES += src/base/ftsystem.c
+else
+CSOURCES += builds/unix/ftsystem.c
+endif
+

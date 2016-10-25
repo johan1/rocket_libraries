@@ -5,6 +5,7 @@
 #else
 #include <iostream>
 #endif
+#include <boost/format.hpp>
 
 using namespace boost::chrono;
 
@@ -32,7 +33,7 @@ void Logger::log(LogLevel const& level, std::string const& tag, std::string cons
 
 void Logger::log(LogLevel const& level, std::string const& msg) {
 	log(level, defaultTag, msg);
-	if (level == LogLevel::ERROR) {
+	if (level == LogLevel::ERROR_LOG_LEVEL) {
 		flush();
 	}
 }
@@ -65,11 +66,11 @@ void Logger::LoggerTask::operator()() {
 	auto msString = (boost::format("%03d") % (ms.count() % 1000)).str();
 
 	std::cout << timeString << "." << msString << " " << tag << " ";
-	if (level == LogLevel::DEBUG) {
+	if (level == LogLevel::DEBUG_LOG_LEVEL) {
 		std::cout << "DEBUG ";
-	} else if (level == LogLevel::WARNING) {
+	} else if (level == LogLevel::WARNING_LOG_LEVEL) {
 		std::cout << "WARNING ";
-	} else if (level == LogLevel::ERROR) {
+	} else if (level == LogLevel::ERROR_LOG_LEVEL) {
 		std::cout << "ERROR ";
 	}
 
@@ -77,11 +78,11 @@ void Logger::LoggerTask::operator()() {
 #else
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wformat-security"
-	if (level == LogLevel::DEBUG) {
+	if (level == LogLevel::DEBUG_LOG_LEVEL) {
 		__android_log_print(ANDROID_LOG_DEBUG, tag.c_str(), message.c_str());
-	} else if (level == LogLevel::WARNING) {
+	} else if (level == LogLevel::WARNING_LOG_LEVEL) {
 		__android_log_print(ANDROID_LOG_WARN, tag.c_str(), message.c_str());
-	} else if (level == LogLevel::ERROR) {
+	} else if (level == LogLevel::ERROR_LOG_LEVEL) {
 		__android_log_print(ANDROID_LOG_ERROR, tag.c_str(), message.c_str());
 	}
 #pragma clang diagnostic pop

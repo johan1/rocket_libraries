@@ -15,7 +15,6 @@ CSOURCES := \
 		pngread.c \
 		pngwutil.c \
 		pngget.c \
-		pngtest.c \
 		pngset.c \
 		pngwrite.c \
 		pngpread.c \
